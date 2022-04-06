@@ -5,12 +5,8 @@ import numpy as np
 df = pd.read_csv("./data/sample test file - Sheet1.csv",
                  parse_dates=["Last Check-In Date"])
 print(df)
-print("\n/////////////////////////////////////////////////\n")
 
-print("Do you want to remove rows with any required value (zip, city, Last Check-In Date, Company) being NaN? (y/n)")
-
-if input() == "y" or input() == "yes":
-    df = df.dropna(subset=["Zip", "City", "Last Check-In Date", "Company"])
+###FUNCTIONS###
 
 
 def customerOlderChIn():
@@ -45,6 +41,22 @@ def alphaOrderFN():
           ["First Name", "Last Name"]])
 
 
+print("\n/////////////////////////////////////////////////\n")
+
+###DATA CONTROL ZONE###
+print("Do you want to remove rows with any required value (street, zip, city, Last Check-In Date, Company) being NaN? (y/n)")
+resp = input()
+if resp == "y" or resp == "yes":
+    df = df.dropna(subset=["Street", "Zip", "City",
+                   "Last Check-In Date", "Company"])
+
+
+if any(df.isnull().any(axis=1)) == True:
+    print("WARNING: Some values are NaN: ")
+    print(df[df.isnull().any(axis=1)])
+
+
+###MAIN###
 print("Welcome, which query do you wish to realize? ")
 while True:
     print("Oldest Checked-in Customer: 1")
