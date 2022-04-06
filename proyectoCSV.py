@@ -22,6 +22,23 @@ def customerNewerChIn():
           retRow["Last Name"] + ", on date: " + str(retRow["Last Check-In Date"]))
 
 
+def alphaOrderLN():
+    print("Geting Full Name table ordered by Last Name alphabetical order...")
+    dfCopy = df
+    dfCopy.sort_values(by=["Last Name"], ascending=False)
+    print(dfCopy.sort_values(by=["Last Name"], ascending=True)[
+        ["Last Name", "First Name"]])
+
+
+def alphaOrderFN():
+    print("Geting Full Name table ordered by First Name alphabetical order...")
+    dfCopy = df
+    dfCopy.sort_values(by=["Last Name"], ascending=False)
+    print(dfCopy.sort_values(by=["Last Name"], ascending=True)[
+          ["First Name", "Last Name"]])
+
+
 customerOlderChIn()
 customerNewerChIn()
-print("Funcionalidades basicas")
+alphaOrderLN()
+alphaOrderFN()
