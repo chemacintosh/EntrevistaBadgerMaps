@@ -1,9 +1,16 @@
 from tabnanny import check
 import pandas as pd
+import numpy as np
 
 df = pd.read_csv("./data/sample test file - Sheet1.csv",
                  parse_dates=["Last Check-In Date"])
 print(df)
+print("\n/////////////////////////////////////////////////\n")
+
+print("Do you want to remove rows with any required value (zip, city, Last Check-In Date, Company) being NaN? (y/n)")
+
+if input() == "y" or input() == "yes":
+    df = df.dropna(subset=["Zip", "City", "Last Check-In Date", "Company"])
 
 
 def customerOlderChIn():
@@ -38,7 +45,24 @@ def alphaOrderFN():
           ["First Name", "Last Name"]])
 
 
-customerOlderChIn()
-customerNewerChIn()
-alphaOrderLN()
-alphaOrderFN()
+print("Welcome, which query do you wish to realize? ")
+while True:
+    print("Oldest Checked-in Customer: 1")
+    print("Newer Checked-in Customer: 2")
+    print("Full name table ordered by Last name alphabetical order: 3")
+    print("Full name table ordered by First name alphabetical order: 4")
+    print("Write here the option number: ")
+    opc = input()
+    if opc == "1":
+        customerOlderChIn()
+    elif opc == "2":
+        customerNewerChIn()
+    elif opc == "3":
+        alphaOrderLN()
+    elif opc == "4":
+        alphaOrderFN()
+
+    print("Do you wish to realize any other query? (y/n):")
+    resp = input()
+    if resp == "n" or resp == "no":
+        break
