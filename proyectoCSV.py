@@ -1,4 +1,5 @@
 from tabnanny import check
+import warnings
 import pandas as pd
 import numpy as np
 
@@ -27,17 +28,13 @@ def customerNewerChIn():
 
 def alphaOrderLN():
     print("Geting Full Name table ordered by Last Name alphabetical order...")
-    dfCopy = df
-    dfCopy.sort_values(by=["Last Name"], ascending=False)
-    print(dfCopy.sort_values(by=["Last Name"], ascending=True)[
+    print(df.sort_values(by=["Last Name"], ascending=True)[
         ["Last Name", "First Name"]])
 
 
 def alphaOrderFN():
     print("Geting Full Name table ordered by First Name alphabetical order...")
-    dfCopy = df
-    dfCopy.sort_values(by=["Last Name"], ascending=False)
-    print(dfCopy.sort_values(by=["Last Name"], ascending=True)[
+    print(df.sort_values(by=["Last Name"], ascending=True)[
           ["First Name", "Last Name"]])
 
 
@@ -52,7 +49,7 @@ if resp == "y" or resp == "yes":
 
 
 if any(df.isnull().any(axis=1)) == True:
-    print("WARNING: Some values are NaN: ")
+    warnings.warn("Some values are NaN")
     print(df[df.isnull().any(axis=1)])
 
 
@@ -64,7 +61,17 @@ while True:
     print("Full name table ordered by Last name alphabetical order: 3")
     print("Full name table ordered by First name alphabetical order: 4")
     print("Write here the option number: ")
-    opc = input()
+
+    validInput = False
+    while not validInput:
+        try:
+            opc = input()
+            assert(opc == "1" or opc == "2" or opc == "3" or opc == "4")
+
+            validInput = True
+        except:
+            print("The option has to be one of the numbers specified")
+#opc != "1" or opc != "2" or opc != "3" or opc != "4"
     if opc == "1":
         customerOlderChIn()
     elif opc == "2":
