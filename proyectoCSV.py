@@ -34,7 +34,7 @@ def alphaOrderLN():
 
 def alphaOrderFN():
     print("Geting Full Name table ordered by First Name alphabetical order...")
-    print(df.sort_values(by=["Last Name"], ascending=True)[
+    print(df.sort_values(by=["First Name"], ascending=True)[
           ["First Name", "Last Name"]])
 
 
@@ -71,7 +71,7 @@ while True:
             validInput = True
         except:
             print("The option has to be one of the numbers specified")
-#opc != "1" or opc != "2" or opc != "3" or opc != "4"
+
     if opc == "1":
         customerOlderChIn()
     elif opc == "2":
