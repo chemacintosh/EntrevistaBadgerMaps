@@ -24,3 +24,4 @@ def customerNewerChIn():
 
 customerOlderChIn()
 customerNewerChIn()
+print("Funcionalidades basicas")
